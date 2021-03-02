@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>包列表</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" border="1">
+            <thead>
+            <h1 id="topic">项目名称：{{ data_info.0.target_project }}</h1>
+            <tr bgcolor="#6495ed">
+                <th>包全名</th>
+                <th>版本名</th>
+                <th>测试工具</th>
+                <th>语言</th>
+                <th>包描述</th>
+                <th>开始时间</th>
+                <th>运行时长</th>
+                <th>结束时间</th>
+                <th>分析状态</th>
+                <th>结果文件介绍</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    {% for package in data_info %}
+                        {% for key, values in package.items %}
+                            {% if key != "target_project" %}
+                                <th>{{ values }}</th>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>项目列表</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+</head>
+<body>
+
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" border="1">
+            <thead>
+            <tr bgcolor="#6495ed">
+                <th>项目全名</th>
+                <th>所有者</th>
+                <th>主机ID</th>
+                <th>主机IP地址</th>
+                <th>操作系统</th>
+                <th>项目描述</th>
+                <th>开始时间</th>
+                <th>运行时长</th>
+                <th>结束时间</th>
+                <th>分析状态</th>
+                <th>结果文件介绍</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in data_info %}
+                <tr>
+                    {% for key, value in row.items %}
+                        {% if key == 'name' %}
+                            <th><em><u><a href="javascript:sendData('{{ row.id }}')">{{ value }}</a></u></em></th>
+                        {% elif key != 'id' %}
+                            <th><a>{{ value }}</a></th>
+                        {% endif %}
+                    {% endfor %}
+                    <th>
+                        <select class="form-control" id="fm_select">
+			                {% for i in obj.operation %}
+                                <option>{{ i }}</option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-success" id="fm_submit">提交</button>
+                    </th>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    $(function(){
+        $("#fm_submit").click(function() {
+            var selected_value = document.getElementById("fm_select");
+            window.alert(selected_value.options[selected_value.selectedIndex].text);
+
+            jQuery.post('', {"selected_value": selected_value.value});
+        })
+    })
+
+    function sendData(value) {
+        window.location.href = 'packageinfo-' + value;
+    }
+
+</script>
+
+
+</body>
+</html>

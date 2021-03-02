@@ -1,0 +1,6 @@
+# -*- coding: gbk -*-
+from django import forms
+
+
+class operationsForm(forms.Form):
+    operation = forms.ChoiceField(choices=[(1, 'Ìí¼Ó'), (2, 'É¾³ý')])
