@@ -1,2 +1,2 @@
 # SysStatusControl
-This project is build for software quantity confirm big work
+This project is built for software quantity confirm big work
